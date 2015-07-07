@@ -41,7 +41,7 @@
                 <td><%= file.file.name %></td>
                 <td><%= file.meta.video.container %></td>
                 <td><%= file.meta.duration.raw %></td>
-                <td><a href="<%= file.file.path %>">link</a></td>
+                <td><a href="<%= file.file.path.split('/')[1] %>">link</a></td>
             </tr>
         <% }) %>
         </tbody>

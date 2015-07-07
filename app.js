@@ -38,7 +38,7 @@ app.post('/upload', function(req,res){
     var form = new formidable.IncomingForm();
     form.encoding  = 'utf-8';
     form.uploadDir = './uploads'; 
-    form.keepExtensions = false;
+    form.keepExtensions = true;
     
     form.parse(req, function(err, fields, files) {
       if( ! files.upload.size ) return res.status(400).send('file is empty'); 
