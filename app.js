@@ -4,24 +4,39 @@ var bodyParser 	 = require('body-parser');
 var cookieParser = require('cookie-parser');  
 var app        	 = express(); 
 var config	     = require('./config'); 
-var ffmpeg      = require('ffmpeg'); 
+var ffmpeg       = require('ffmpeg'); 
+var Datastore    = require('nedb'); 
+var videoFiles   = new Datastore({
+    filename: './db/videofiles.db',
+    autoload: true
+}); 
 
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(cookieParser()); 
 app.use(session(config.session)); 
 
-app.use(express.static(__dirname + '/public')); 
+app.use(express.static(__dirname + '/uploads')); 
 app.set('view engine', 'ejs'); 
 app.set('views', __dirname + '/views');
 
 app.get('/', function(req,res){
-    res.render('mainpage');  
+    videoFiles.find({}, function(err, files){
+        
+        if(err) return res.status(500).send('db error: ' + err); 
+        
+        res.render('mainpage', {
+            files: files, 
+            userFiles: files.filter(function(e){
+                return e.user == req.sessionID
+            })
+        });      
+    }); 
 }); 
 
 app.post('/upload', function(req,res){
     var formidable   = require('formidable'); 
     var form = new formidable.IncomingForm();
-    form.encoding = 'utf-8';
+    form.encoding  = 'utf-8';
     form.uploadDir = './uploads'; 
     form.keepExtensions = false;
     
@@ -32,11 +47,18 @@ app.post('/upload', function(req,res){
             new ffmpeg(files.upload.path, function (err, video) {
                 if (!err) {
                     console.log('The video is ready to be processed');
-                    res.send({
+                    
+                    var entry = {
                         user: req.sessionID, 
                         file: files.upload,
                         meta: video.metadata
+                    }; 
+                    
+                    videoFiles.insert(entry, function(err, newDoc){
+                        if( err ) res.status(500).send('could not save new entry to db'); 
+                        res.redirect('/'); 
                     }); 
+                    
                 } else {
                     console.log('Error: ' + err);
                 }

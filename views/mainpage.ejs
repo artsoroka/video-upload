@@ -7,5 +7,44 @@
     <input type="file" name="upload" multiple="multiple"><br>
     <input type="submit" value="Upload">
     </form>
+    
+    <h2>Current user files:</h2>
+    <table>
+        <thead>
+            <th>name</th>
+            <th>type</th>
+            <th>duration</th>
+            <th>link</th>
+        </thead>
+        <tbody>
+        <% userFiles.forEach(function(file){ %>
+            <tr>
+                <td><%= file.file.name %></td>
+                <td><%= file.meta.video.container %></td>
+                <td><%= file.meta.duration.raw %></td>
+                <td><a href="<%= file.file.path %>">link</a></td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <h2>All available files:</h2>
+        <table>
+        <thead>
+            <th>name</th>
+            <th>type</th>
+            <th>duration</th>
+            <th>link</th>
+        </thead>
+        <tbody>
+        <% files.forEach(function(file){ %>
+            <tr>
+                <td><%= file.file.name %></td>
+                <td><%= file.meta.video.container %></td>
+                <td><%= file.meta.duration.raw %></td>
+                <td><a href="<%= file.file.path %>">link</a></td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
 </body>
 </html>
