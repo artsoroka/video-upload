@@ -1,5 +1,5 @@
 module.exports = {
-    port: 8080, 
+    port: process.env.VA_PORT || 8080, 
     file_upload_dir: './uploads', 
     session: {
         name: 'video-upload', 
