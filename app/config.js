@@ -11,6 +11,6 @@ module.exports = {
         },
         secret: 'keyboard cat', 
         resave: true, 
-        saveUninitialized: false
+        saveUninitialized: true
     }
 }; 
