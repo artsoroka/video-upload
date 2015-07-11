@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var app        	 = express(); 
 var config	     = require('./config'); 
 var videoFiles   = require('./models/videoFiles'); 
-var routes = require('./routes'); 
+var routes       = require('./routes'); 
 
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(cookieParser()); 

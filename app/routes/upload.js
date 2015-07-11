@@ -11,6 +11,9 @@ router.post('/', function(req,res){
     form.keepExtensions = true;
     
     form.parse(req, function(err, fields, files) {
+    
+        if( err ) return res.status(500).send('form parse error'); 
+        
       if( ! files.upload.size ) return res.status(400).send('file is empty'); 
       
       try {
