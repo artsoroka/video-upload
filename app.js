@@ -11,6 +11,8 @@ var videoFiles   = new Datastore({
     autoload: true
 }); 
 
+var routes = require('./routes'); 
+
 app.use(bodyParser.urlencoded({ extended: false })); 
 app.use(cookieParser()); 
 app.use(session(config.session)); 
@@ -18,6 +20,8 @@ app.use(session(config.session));
 app.use(express.static(__dirname + '/uploads')); 
 app.set('view engine', 'ejs'); 
 app.set('views', __dirname + '/views');
+
+app.use('/auth', routes.auth); 
 
 app.get('/', function(req,res){
     videoFiles.find({}, function(err, files){
