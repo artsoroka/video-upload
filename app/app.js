@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 app.use('/auth', routes.auth); 
-app.use('/', routes.upload); 
+app.use('/upload', routes.upload); 
 
 app.get('/', function(req,res){
     videoFiles.find({}, function(err, files){

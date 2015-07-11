@@ -4,7 +4,7 @@ var formidable = require('formidable');
 var ffmpeg     = require('ffmpeg'); 
 var videoFiles = require('../models/videoFiles'); 
 
-router.post('/upload', function(req,res){
+router.post('/', function(req,res){
     var form = new formidable.IncomingForm();
     form.encoding  = 'utf-8';
     form.uploadDir = config.file_upload_dir; 
