@@ -18,20 +18,7 @@ app.set('views', __dirname + '/views');
 app.use('/auth', routes.auth); 
 app.use('/upload', routes.upload); 
 
-app.get('/', function(req,res){
-    videoFiles.find({}, function(err, files){
-        
-        if(err) return res.status(500).send('db error: ' + err); 
-        
-        res.render('mainpage', {
-            files: files, 
-            userFiles: files.filter(function(e){
-                return e.user == req.sessionID; 
-            })
-        });      
-    }); 
-}); 
- 
+app.use('/', routes.main); 
 
 app.get('/file/:name', function(req,res){
     res.send('get file data: ' + req.params.name); 
