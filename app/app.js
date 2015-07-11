@@ -7,7 +7,7 @@ var config	     = require('./config');
 var ffmpeg       = require('ffmpeg'); 
 var Datastore    = require('nedb'); 
 var videoFiles   = new Datastore({
-    filename: './db/videofiles.db',
+    filename: __dirname + '/db/videofiles.db',
     autoload: true
 }); 
 
@@ -31,7 +31,7 @@ app.get('/', function(req,res){
         res.render('mainpage', {
             files: files, 
             userFiles: files.filter(function(e){
-                return e.user == req.sessionID
+                return e.user == req.sessionID; 
             })
         });      
     }); 

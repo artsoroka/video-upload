@@ -8,6 +8,8 @@ module.exports = {
             httpOnly: false, 
             secure: false
         },
-        secret: 'keyboard cat'
+        secret: 'keyboard cat', 
+        resave: true, 
+        saveUninitialized: false
     }
 }; 
