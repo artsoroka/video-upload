@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser()); 
 app.use(session(config.session)); 
 
-app.use(express.static(__dirname + '/uploads')); 
+app.use(express.static(__dirname + '/uploads'));
+app.use(express.static(__dirname + '/public')); 
+
 app.set('view engine', 'ejs'); 
 app.set('views', __dirname + '/views');
 

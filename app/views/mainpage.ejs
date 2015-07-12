@@ -3,8 +3,8 @@
     <title>Video upload service</title>
 </head>
 <body>
-    <form action="/upload" enctype="multipart/form-data" method="post">
-    <input type="file" name="upload" multiple="multiple"><br>
+    <form id="fileUpload" action="/upload" enctype="multipart/form-data" method="post">
+    <input id="videoFile" type="file" name="upload" multiple="multiple"><br>
     <input type="submit" value="Upload">
     </form>
     
@@ -46,5 +46,8 @@
         <% }) %>
         </tbody>
     </table>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+    <script src="main.js"></script>
+    
 </body>
 </html>

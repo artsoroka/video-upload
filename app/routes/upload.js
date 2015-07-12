@@ -6,14 +6,16 @@ var videoFiles = require('../models/videoFiles');
 
 var getValidFiles = function(files, callback){
      
+    if( ! files || ! files.upload )
+        return callback('no files passed to the controller'); 
+
     var numberOfFiles = files.upload.length || 1; 
     var emptyFiles    = []; 
     var validFiles    = []; 
         
     console.log('I have files: ', numberOfFiles);  
 
-    if( ! files || ! files.upload )
-        return callback('no files passed to the controller'); 
+    
             
     if( ! files.upload.length )
         files.upload = [files.upload]; 
@@ -80,7 +82,7 @@ router.post('/', function(req,res){
                 
                 
             });     
-        
+            
             res.redirect('/');
             
         }); 
