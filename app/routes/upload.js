@@ -50,7 +50,7 @@ router.post('/', function(req,res){
         if( err ) return res.status(500).send('form parse error'); 
         
         getValidFiles(files, function(err, files){
-            if(err) return res.status(500).json({ err: err }); 
+            if(err) return res.status(400).json({ err: err }); 
         
             files.map(function(file){
                 
