@@ -17,6 +17,47 @@ var clearInput = function(elementId){
     input.replaceWith(input.val('').clone(true));
 }; 
 
+var renderSelectedFilesTable = function(files){
+    
+    var tableBody = document.getElementById('selectedFiles'); 
+    if( ! files || ! files.length ) return tableBody.innerHTML = '';   
+   
+    var rows = []; 
+    var tbody = ''; 
+    
+    for(var i = 0; i < files.length; i++ ){
+        var tr = '<tr>'; 
+        tr += '<td>' + files[i].name + '</td>'; 
+        tr += '<td>' + files[i].size + '</td>'; 
+        tr += '</tr>'; 
+        
+        rows.push(tr); 
+    }
+    
+    for(var r in rows){
+        tbody += rows[r];     
+    }
+    
+    tableBody.innerHTML = tbody;  
+    
+}; 
+
+$('#filePicker').click(function(e){
+    $('#videoFile').trigger('click'); 
+}); 
+
+$('#clearSelectedFiles').click(function(e){
+    clearInput('#videoFile'); 
+    renderSelectedFilesTable(null); 
+}); 
+
+$('#videoFile').change(function(e){
+    var files = e.target.files; 
+    
+    renderSelectedFilesTable(files);     
+    
+}); 
+
 $('#fileUpload').submit(function(e){
     e.preventDefault(); 
     
