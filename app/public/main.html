@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Bootstrap 3 Control Panel</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<!-- Header -->
+<div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-toggle"></span>
+      </button>
+      <a class="navbar-brand" href="#">Control Panel</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /container -->
+</div>
+<!-- /Header -->
+
+<!-- Main -->
+<div class="container">
+  
+  <!-- upper section -->
+  <div class="row">
+	<div class="col-sm-3">
+      <!-- left -->
+      <h3><i class="glyphicon glyphicon-cog"></i> Toolbox</h3>
+      <hr>
+      
+      <ul class="nav nav-stacked">
+        <li><a href="javascript:;"><i class="glyphicon glyphicon-file"></i> Загрузить файл</a></li>
+        <li><a href="javascript:;"><i class="glyphicon glyphicon-list-alt"></i> Видеоблоки</a></li>
+        <li><a href="javascript:;"><i class="glyphicon glyphicon-time"></i> Расписание</a></li>
+        <li><a href="javascript:;"><i class="glyphicon glyphicon-plus"></i> Настройки</a></li>
+      </ul>
+      
+      <hr>
+      
+  	</div><!-- /span-3 -->
+    <div class="col-sm-9">
+      	
+      <!-- column 2 -->	
+       <h3><i class="glyphicon glyphicon-dashboard"></i> Dashboard</h3>  
+            
+       <hr>
+      
+	   <div class="row">
+            <!-- center left-->	
+         	<div class="col-md-9">
+			   
+			<div id="uploadMsg" class="alert alert-danger" role="alert" style="display: none;">
+            </div>
+			  
+			  
+              <div id="uploadStatusPanel" class="panel panel-default" style="display: none;"> 
+                  <div class="panel-heading"><h4>Processing Status</h4></div>
+                  <div class="panel-body">
+                    
+                    <small>Complete</small>
+                    <div class="progress">
+                      <div id="uploadStatus" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        <span class="sr-only"></span>
+                      </div>
+                    </div>
+                
+                  </div><!--/panel-body-->
+              </div><!--/panel-->                     
+            
+            <table id="selectedFilesTable" class="table table-striped" style="display: none;"> 
+                <thead>
+                  <tr>
+                      <th>Filename</th>
+                      <th>size</th>
+                  </tr>
+                </thead>
+                <tbody id="selectedFiles">
+                </tbody>
+              </table>
+            
+            
+            
+              
+          	</div><!--/col-->
+         
+            <!--center-right-->
+        	<div class="col-md-3">
+        	
+        	<div style="display: none;">    
+            	<form id="fileUpload" action="/upload" enctype="multipart/form-data" method="post">
+                    <input id="videoFile" type="file" name="upload" multiple="multiple"><br>
+                    <input type="submit" value="Upload">
+                </form>
+            </div>
+                
+        	   <ul class="list-unstyled">
+        	    <li><a href="#"  id="filePicker" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-file"></i>Выбрать файлы</a></li>
+                <li></li><a href="#" id="clearSelectedFiles" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-remove"></i>Сбросить</a></li>
+                <li><a href="#"  id="uploadSelectedFiles" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-cloud-upload"></i>Загрузить</a></li>
+        	   </ul>
+			</div><!--/col-span-6-->
+     
+       </div><!--/row-->
+  	</div><!--/col-span-9-->
+    
+  </div><!--/row-->
+  <!-- /upper section -->
+  
+</div><!--/container-->
+<!-- /Main -->
+
+
+
+<div class="modal" id="addWidgetModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Add Widget</h4>
+      </div>
+      <div class="modal-body">
+        <p>Add a widget stuff here..</p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn">Close</a>
+        <a href="#" class="btn btn-primary">Save changes</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dalog -->
+</div><!-- /.modal -->
+
+
+
+  
+	<!-- script references -->
+		<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
