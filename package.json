@@ -27,6 +27,7 @@
     "express": "^4.13.1",
     "express-session": "^1.11.3",
     "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.0.1",
     "formidable": "^1.0.17",
     "nedb": "^1.1.2"
   }
