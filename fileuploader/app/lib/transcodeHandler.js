@@ -1,5 +1,6 @@
 var converter = require('./converter'); 
 var Promise   = require('bluebird'); 
+var config    = require('../../config'); 
 
 module.exports = function(reporter){
 	return function(formData){
@@ -8,10 +9,14 @@ module.exports = function(reporter){
 		reporter.setChannel(channel); 
 		
 		return new Promise(function(resolve, reject){
-			resolve('ok good'); 
-			setTimeout(function(){
-				reporter.notify('progress', 'worker is doing some stuff'); 
-			}, 5000); 
+			converter({
+			    file        : formData.files.file.path,  
+			    audioCodec  : 'aac', 
+			    videoCodec  : 'libx264', 
+			    outputFormat: 'mp4',
+			    outputFile  : config.video_dir + '/' + formData.files.file.name,  
+			    reporter    : reporter
+			});
 
 		}); 
 

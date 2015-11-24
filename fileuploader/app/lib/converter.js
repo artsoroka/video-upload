@@ -21,20 +21,20 @@ var transcode = function(settings){
                 .format(settings.outputFormat)
                 .save(settings.outputFile)
                 .on('progress', function(progress) {
-                    settings.reporter.log('Processing: ' + progress.percent + '% done');
+                    settings.reporter.notify('progress','Processing: ' + progress.percent + '% done');
                 })
                 .on('end', function() {
-                    settings.reporter.log('Transcoding succeeded !');
+                    settings.reporter.notify('progress','Transcoding succeeded !');
                     resolve('Finished transcoding');  
                 })
                 .on('error', function(err,stdout,stderr) {
-                    settings.reporter.log('an error happened: ' + err.message);
-                    settings.reporter.log('ffmpeg stdout: ' + stdout);
-                    settings.reporter.log('ffmpeg stderr: ' + stderr);
+                    settings.reporter.notify('progress','an error happened: ' + err.message);
+                    settings.reporter.notify('progress','ffmpeg stdout: ' + stdout);
+                    settings.reporter.notify('progress','ffmpeg stderr: ' + stderr);
                     reject(err.message); 
                 })
                 .on('start', function() {
-                    settings.reporter.log('file starting');
+                    settings.reporter.notify('progress','started  transcoding ');
                 });
                 
         }); 
@@ -42,12 +42,14 @@ var transcode = function(settings){
 }; 
 
 module.exports = function(settings){
-    checkFile(settings.file)
-        .then(transcode(settings))
-        .then(function(status){
-            console.log('STATUS: ', status); 
-        })
-        .catch(function(err){
-            console.log('ERR: ', err); 
-        }); 
+    return new Promise(function(resolve, reject){
+        checkFile(settings.file)
+            .then(transcode(settings))
+            .then(function(status){
+                resolve('done transcoding'); 
+            })
+            .catch(function(err){
+                reject(err); 
+            });
+    }) 
 };
